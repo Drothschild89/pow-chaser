@@ -15,6 +15,7 @@ class App extends Component {
   };
 
   componentDidMount() {
+    document.body.style.background = 'skyblue'
     const token = localStorage.token;
     if (token) {
       this.persistUser(token);
@@ -43,19 +44,17 @@ class App extends Component {
   };
 
   handleAuthResponse = (data) => {
-    if (data.username) {
-      const { username, id, token } = data;
+    console.log(data)
+    if (data.user) {
+      const { user, jwt } = data;
 
       this.setState({
-        user: {
-          username,
-          id,
-        },
+        user: user,
         error: null,
       });
 
-      localStorage.setItem("token", token);
-      this.props.history.push("/paintings");
+      localStorage.setItem("token", jwt);
+      this.props.history.push("/user");
     } else if (data.error) {
       this.setState({
         error: data.error,
@@ -74,14 +73,12 @@ class App extends Component {
       body: JSON.stringify({ user: userInfo }),
     })
       .then((resp) => resp.json())
-      .then((data) => {this.handleAuthResponse(data)
-      this.props.history.push('/user')})
+      .then((data) => this.handleAuthResponse(data))
       .catch(console.log);
   };
 
   handleSignup = (e, userInfo) => {
     e.preventDefault();
-
     fetch(API + "/sign_up", {
       method: "POST",
       headers: {
@@ -114,7 +111,6 @@ class App extends Component {
           <Route path="/signup" render={routerProps => <Login {...routerProps} handleLoginOrSignup={this.handleSignup}/>} />
           {!user.id && <Redirect to="/login" />}
           <Route path="/user" render={routerProps => <User {...routerProps}/>} />
-
     </div>
   );
 }

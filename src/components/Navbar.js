@@ -18,15 +18,15 @@ const Navbar = ({ user, handleLogout }) => {
         ) : (
           <>
             <li>
-              <NavLink to="/" exact>
+              <NavLink to="/login" exact>
                 Home
               </NavLink>
             </li>
+        
             <li>
-              <NavLink to="/users">Users</NavLink>
-            </li>
-            <li>
-              <button onClick={handleLogout}>Logout</button>
+                <NavLink to='/login' onClick={handleLogout}>
+                    Logout
+              </NavLink>
             </li>
           </>
         )}

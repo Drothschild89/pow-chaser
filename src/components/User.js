@@ -16,6 +16,8 @@ class User extends React.Component {
         elevation: 0,
         powChartXValues: [],
         powChartYValues: [],
+        temperature: 0,
+        favorites: []
     }
 
     componentDidMount = () => {
@@ -45,15 +47,178 @@ class User extends React.Component {
             data.data.data.map(pow => powChartYValuesFunction.push(parseInt(pow["Snow Depth (in)"])))
             this.setState({
                 powChartXValues: powChartXValuesFunction,
-                powChartYValues: powChartYValuesFunction
+                powChartYValues: powChartYValuesFunction, 
+                date: data.data.data[30].Date,
+                snowDepth: data.data.data[30]["Snow Depth (in)"],
+                snowChange: data.data.data[30]["Change In Snow Depth (in)"],
+                temperature: data.data.data[30]["Observed Air Temperature (degrees farenheit)"],
+                elevation: data.data.station_information.elevation,
+                mountain: data.data.station_information.name,
+                latitude: data.data.station_information.location.lat,
+                longitude: data.data.station_information.location.lng,
             })
         }
         )
     }
 
-    test = () => {
-        console.log('poop')
+    getAlpine = () => {
+        let API_Call = 'http://localhost:3000/alpine';
+        let powChartXValuesFunction = [];
+        let powChartYValuesFunction = [];
+        fetch(API_Call)
+        .then(res => res.json())
+        .then( data => {
+            data.data.data.map(pow => powChartXValuesFunction.push(pow.Date))
+            data.data.data.map(pow => powChartYValuesFunction.push(parseInt(pow["Snow Depth (in)"])))
+            this.setState({
+                powChartXValues: powChartXValuesFunction,
+                powChartYValues: powChartYValuesFunction,
+                date: data.data.data[30].Date,
+                snowDepth: data.data.data[30]["Snow Depth (in)"],
+                snowChange: data.data.data[30]["Change In Snow Depth (in)"],
+                temperature: data.data.data[30]["Observed Air Temperature (degrees farenheit)"],
+                elevation: data.data.station_information.elevation,
+                mountain: data.data.station_information.name,
+                latitude: data.data.station_information.location.lat,
+                longitude: data.data.station_information.location.lng,
+            })
+        }
+        )
     }
+
+    getHeavenly = () => {
+        let API_Call = 'http://localhost:3000/heavenly';
+        let powChartXValuesFunction = [];
+        let powChartYValuesFunction = [];
+        fetch(API_Call)
+        .then(res => res.json())
+        .then( data => {
+            data.data.data.map(pow => powChartXValuesFunction.push(pow.Date))
+            data.data.data.map(pow => powChartYValuesFunction.push(parseInt(pow["Snow Depth (in)"])))
+            this.setState({
+                powChartXValues: powChartXValuesFunction,
+                powChartYValues: powChartYValuesFunction,
+                date: data.data.data[30].Date,
+                snowDepth: data.data.data[30]["Snow Depth (in)"],
+                snowChange: data.data.data[30]["Change In Snow Depth (in)"],
+                temperature: data.data.data[30]["Observed Air Temperature (degrees farenheit)"],
+                elevation: data.data.station_information.elevation,
+                mountain: data.data.station_information.name,
+                latitude: data.data.station_information.location.lat,
+                longitude: data.data.station_information.location.lng,
+            })
+        }
+        )
+    }
+
+    getStevens = () => {
+        let API_Call = 'http://localhost:3000/stevens';
+        let powChartXValuesFunction = [];
+        let powChartYValuesFunction = [];
+        fetch(API_Call)
+        .then(res => res.json())
+        .then( data => {
+            data.data.data.map(pow => powChartXValuesFunction.push(pow.Date))
+            data.data.data.map(pow => powChartYValuesFunction.push(parseInt(pow["Snow Depth (in)"])))
+            this.setState({
+                powChartXValues: powChartXValuesFunction,
+                powChartYValues: powChartYValuesFunction,
+                date: data.data.data[30].Date,
+                snowDepth: data.data.data[30]["Snow Depth (in)"],
+                snowChange: data.data.data[30]["Change In Snow Depth (in)"],
+                temperature: data.data.data[30]["Observed Air Temperature (degrees farenheit)"],
+                elevation: data.data.station_information.elevation,
+                mountain: data.data.station_information.name,
+                latitude: data.data.station_information.location.lat,
+                longitude: data.data.station_information.location.lng,
+            })
+        }
+        )
+    }
+
+    getParadise = () => {
+        let API_Call = 'http://localhost:3000/paradise';
+        let powChartXValuesFunction = [];
+        let powChartYValuesFunction = [];
+        fetch(API_Call)
+        .then(res => res.json())
+        .then( data => {
+            data.data.data.map(pow => powChartXValuesFunction.push(pow.Date))
+            data.data.data.map(pow => powChartYValuesFunction.push(parseInt(pow["Snow Depth (in)"])))
+            this.setState({
+                powChartXValues: powChartXValuesFunction,
+                powChartYValues: powChartYValuesFunction,
+                date: data.data.data[30].Date,
+                snowDepth: data.data.data[30]["Snow Depth (in)"],
+                snowChange: data.data.data[30]["Change In Snow Depth (in)"],
+                temperature: data.data.data[30]["Observed Air Temperature (degrees farenheit)"],
+                elevation: data.data.station_information.elevation,
+                mountain: data.data.station_information.name,
+                latitude: data.data.station_information.location.lat,
+                longitude: data.data.station_information.location.lng,
+            })
+        }
+        )
+    }
+
+    getCayuse = () => {
+        let API_Call = 'http://localhost:3000/cayuse';
+        let powChartXValuesFunction = [];
+        let powChartYValuesFunction = [];
+        fetch(API_Call)
+        .then(res => res.json())
+        .then( data => {
+            data.data.data.map(pow => powChartXValuesFunction.push(pow.Date))
+            data.data.data.map(pow => powChartYValuesFunction.push(parseInt(pow["Snow Depth (in)"])))
+            this.setState({
+                powChartXValues: powChartXValuesFunction,
+                powChartYValues: powChartYValuesFunction,
+                date: data.data.data[30].Date,
+                snowDepth: data.data.data[30]["Snow Depth (in)"],
+                snowChange: data.data.data[30]["Change In Snow Depth (in)"],
+                temperature: data.data.data[30]["Observed Air Temperature (degrees farenheit)"],
+                elevation: data.data.station_information.elevation,
+                mountain: data.data.station_information.name,
+                latitude: data.data.station_information.location.lat,
+                longitude: data.data.station_information.location.lng,
+            })
+        }
+        )
+    }
+
+    // handleFavorites = (mountain) => {
+    //     let data = {
+
+    //       ticker: o.symbol,
+    //       quantity: o.quantity,
+    //       total: o.total,
+    //       type: o.type,
+    //       wallet_id: this.props.wallet.id,
+    //     };
+    //     fetch("http://localhost:3000/favorites", {
+    //       method: "POST",
+    //       headers: {
+    //         "Accept": "application/json",
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify(data),
+    //     })
+    //       .then((res) => res.json())
+    //       .then((favorite) => {
+    //         console.log(favorite);
+    //         let newFavorites = this.state.favorites;
+    //         if (newFavorites.length == 10) {
+    //           newFavorites.unshift(order);
+    //           newFavorites.pop();
+    //         } else {
+    //           newFavorites.unshift(favorite);
+    //         }
+    //         this.setState({
+    //           favorites: newFavorites,
+    //         });
+    //       });
+    //   };
+    
 
 
 
@@ -95,12 +260,12 @@ class User extends React.Component {
                     <Col>
                     <br></br>         <br></br>         <br></br>         <br></br>
                     <div className="stats">  
-                        <h3 >Today's Statistics</h3>
+                        <h3 >Today's Statistics:</h3>
             <p>Snow Depth: {this.state.snowDepth} inches</p>
             <p>Change in powder levels: {this.state.snowChange} inches</p>
             <p>Elevation: {this.state.elevation} feet</p>
             <p>Latitude: {this.state.latitude}</p>
-            <p>Latitude: {this.state.longitude}</p>
+            <p>Longitude: {this.state.longitude}</p>
             <p>Temperature: {this.state.temperature}F</p>
             </div>
             </Col>
@@ -109,12 +274,17 @@ class User extends React.Component {
                         <Col>
                         <div className="california">
                         <h2>California Mountains</h2>
-                        <Button onClick={this.test} variant="primary">Poop</Button>{' '}
+                        <Button onClick={this.getAlpine} variant="primary">Alpine Meadows</Button>{' '}  <Button variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button onClick={this.fetchPow} variant="primary">Squaw Valley</Button>{' '}  <Button variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button onClick={this.getHeavenly} variant="primary">Heavenly Valley</Button>{' '} <Button variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
                         </div>
                         </Col>
                         <Col>
                         <div className="washington">
                         <h2>Washington Mountains</h2>
+                        <Button onClick={this.getStevens} variant="primary">Stevens Pass</Button>{' '} <Button variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button onClick={this.getParadise} variant="primary">Paradise, Mt. Rainier</Button>{' '} <Button variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button onClick={this.getCayuse} variant="primary">Cayuse / Crystal Mountain</Button>{' '} <Button variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
                         </div>
                         </Col>
                     </Row>

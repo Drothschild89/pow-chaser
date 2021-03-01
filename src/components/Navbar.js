@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Container, Row, Col, Button, Form, LinkContainer } from "react-bootstrap"
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Navbar = ({ user, handleLogout }) => {
   return (

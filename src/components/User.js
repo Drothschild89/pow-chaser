@@ -225,10 +225,10 @@ class User extends React.Component {
         )
     }
 
-    handleFavorites = (mountain) => {
+    handleFavorites = (resort) => {
         let data = { favorite: {
-          rating: mountain.rating,
-          resort_id: mountain.id,
+          rating: resort.rating,
+          resort_id: resort.id,
           user_id: this.props.user.id,
         }
         };
@@ -310,7 +310,7 @@ class User extends React.Component {
                         {this.state.resorts.map(resort => {
                             return (
                                 <div>
-                                     <Button onClick={() => this.fetchMountainData(resort)} variant="primary">{resort.name}</Button>{' '}  <Button variant="primary" onClick={() => this.addToFavorites(resort)}>Add To Favorites</Button>{' '}<br></br><br></br>
+                                     <Button onClick={() => this.fetchMountainData(resort)} variant="primary">{resort.name}</Button>{' '}  <Button variant="primary" onClick={() => this.handleFavorites(resort)}>Add To Favorites</Button>{' '}<br></br><br></br>
                                 </div>
                             )
                         })}
@@ -322,9 +322,9 @@ class User extends React.Component {
                         <Col>
                         <div className="washington">
                         <h2>Washington Mountains</h2>
-                        <Button  variant="primary">Stevens Pass</Button>{' '} <Button id='5' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        {/* <Button  variant="primary">Stevens Pass</Button>{' '} <Button id='5' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
                         <Button onClick={this.getParadise} variant="primary">Paradise, Mt. Rainier</Button>{' '} <Button id='6' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
-                        <Button onClick={this.getCayuse} variant="primary">Cayuse / Crystal Mountain</Button>{' '} <Button id='7' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button onClick={this.getCayuse} variant="primary">Cayuse / Crystal Mountain</Button>{' '} <Button id='7' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br> */}
                         </div>
                         </Col>
                         <Col>

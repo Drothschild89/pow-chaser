@@ -20,24 +20,27 @@ class User extends React.Component {
         powChartYValues: [],
         temperature: 0,
         favorites: [],
-        resorts: []
+        resorts: [],
+        visited: []
     }
 
     componentDidMount = () => {
-        this.fetchPow()
+        this.fetchMountains()
+        // this.fetchPow()
+        this.getAlpine()
         this.fetchFavorites()
-        fetch('http://localhost:3000/pow')
-        .then(res => res.json())
-        .then(data =>  this.setState({
-            date: data.data.data[30].Date,
-            snowDepth: data.data.data[30]["Snow Depth (in)"],
-            snowChange: data.data.data[30]["Change In Snow Depth (in)"],
-            temperature: data.data.data[30]["Observed Air Temperature (degrees farenheit)"],
-            elevation: data.data.station_information.elevation,
-            mountain: data.data.station_information.name,
-            latitude: data.data.station_information.location.lat,
-            longitude: data.data.station_information.location.lng,
-        }))
+        // fetch('http://localhost:3000/squaw')
+        // .then(res => res.json())
+        // .then(data =>  this.setState({
+        //     date: data.data.data[30].Date,
+        //     snowDepth: data.data.data[30]["Snow Depth (in)"],
+        //     snowChange: data.data.data[30]["Change In Snow Depth (in)"],
+        //     temperature: data.data.data[30]["Observed Air Temperature (degrees farenheit)"],
+        //     elevation: data.data.station_information.elevation,
+        //     mountain: data.data.station_information.name,
+        //     latitude: data.data.station_information.location.lat,
+        //     longitude: data.data.station_information.location.lng,
+        // }))
     }
 
     addToFavoritesSquaw = () => {
@@ -68,8 +71,12 @@ class User extends React.Component {
         }))
     }
 
-    fetchPow = () => {
-        let API_Call = 'http://localhost:3000/pow';
+
+
+    fetchMountainData = (resort) => {
+        let mountain = resort.name.split(' ')[0].toLowerCase()
+        // let mountain = resort.name.split(' ').join('-')
+        let API_Call = `http://localhost:3000/${mountain}`;
         let powChartXValuesFunction = [];
         let powChartYValuesFunction = [];
         fetch(API_Call)
@@ -218,46 +225,39 @@ class User extends React.Component {
         )
     }
 
-    // handleFavorites = (mountain) => {
-    //     let data = {
+    handleFavorites = (mountain) => {
+        let data = { favorite: {
+          rating: mountain.rating,
+          resort_id: mountain.id,
+          user_id: this.props.user.id,
+        }
+        };
+        console.log(data)
+        fetch("http://localhost:3000/favorites", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((favorite) => {
+            console.log(favorite)
+          });
+      };
 
-    //       ticker: o.symbol,
-    //       quantity: o.quantity,
-    //       total: o.total,
-    //       type: o.type,
-    //       wallet_id: this.props.wallet.id,
-    //     };
-    //     fetch("http://localhost:3000/favorites", {
-    //       method: "POST",
-    //       headers: {
-    //         "Accept": "application/json",
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify(data),
-    //     })
-    //       .then((res) => res.json())
-    //       .then((favorite) => {
-    //         console.log(favorite);
-    //         let newFavorites = this.state.favorites;
-    //         if (newFavorites.length == 10) {
-    //           newFavorites.unshift(order);
-    //           newFavorites.pop();
-    //         } else {
-    //           newFavorites.unshift(favorite);
-    //         }
-    //         this.setState({
-    //           favorites: newFavorites,
-    //         });
-    //       });
-    //   };
-    
-
-
+      fetchMountains = () => {
+        fetch('http://localhost:3000/resorts')
+        .then(res => res.json())
+        .then(data => this.setState({
+            resorts: data
+        }))
+      }
 
     render() {
         return (
             <div>
-                <Favorites favorites={this.state.favorites}/>
                 <Container>
             <h1 className="title">{this.state.mountain} : {this.state.date}</h1>
             <Row>
@@ -307,17 +307,29 @@ class User extends React.Component {
                         <Col>
                         <div className="california">
                         <h2>California Mountains</h2>
-                        <Button onClick={this.getAlpine} variant="primary">Alpine Meadows</Button>{' '}  <Button id='3' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        {this.state.resorts.map(resort => {
+                            return (
+                                <div>
+                                     <Button onClick={() => this.fetchMountainData(resort)} variant="primary">{resort.name}</Button>{' '}  <Button variant="primary" onClick={() => this.addToFavorites(resort)}>Add To Favorites</Button>{' '}<br></br><br></br>
+                                </div>
+                            )
+                        })}
+                        {/* <Button onClick={this.getAlpine} variant="primary">Alpine Meadows</Button>{' '}  <Button id='3' onClick={(mountain) => this.handleFavorites(mountain)} variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
                         <Button onClick={this.fetchPow} variant="primary">Squaw Valley</Button>{' '}  <Button id='1' variant="primary" onClick={this.addToFavoritesSquaw}>Add To Favorites</Button>{' '}<br></br><br></br>
-                        <Button onClick={this.getHeavenly} variant="primary">Heavenly Valley</Button>{' '} <Button id='4' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button onClick={this.getHeavenly} variant="primary">Heavenly Valley</Button>{' '} <Button id='4' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br> */}
                         </div>
                         </Col>
                         <Col>
                         <div className="washington">
                         <h2>Washington Mountains</h2>
-                        <Button onClick={this.getStevens} variant="primary">Stevens Pass</Button>{' '} <Button id='5' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button  variant="primary">Stevens Pass</Button>{' '} <Button id='5' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
                         <Button onClick={this.getParadise} variant="primary">Paradise, Mt. Rainier</Button>{' '} <Button id='6' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
                         <Button onClick={this.getCayuse} variant="primary">Cayuse / Crystal Mountain</Button>{' '} <Button id='7' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        </div>
+                        </Col>
+                        <Col>
+                        <div className="visited">
+                            <p>Visited Mountains</p>
                         </div>
                         </Col>
                     </Row>

@@ -55,7 +55,7 @@
 
 .california{
   outline: 1px solid #333333;
-  width: 400px;
+  width: 300px;
   height: 250px;
   font-weight: bold;
   margin-left: 125px;
@@ -63,8 +63,37 @@
 
 .washington{
   outline: 1px solid #333333;
-  width: 400px;
+  width: 375px;
   height: 250px;
   font-weight: bold;
   margin-left: 25px;
+}
+
+
+.visited{
+  outline: 1px solid #333333;
+  width: 100px;
+  height: 250px;
+  font-weight: bold;
+  margin-left: 125px;
+}
+
+.o-d {
+  outline: 1px solid #333333;
+  width: 1000px;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.o-d-top {
+  outline: 1px solid #333333;
+  background-color: #242424;
+  width: 1000px;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.favorite-p {
+  color: #c0c0c0;
+  padding-top: 2px;
 }

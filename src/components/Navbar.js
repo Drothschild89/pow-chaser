@@ -1,12 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Container, Row, Col, Button, Form, LinkContainer } from "react-bootstrap"
+import { Container, Row, Col, Button, Form} from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css'
+import {Nav} from "react-bootstrap";
+// import { LinkContainer } from "react-router-bootstrap";
 
 const Navbar = ({ user, handleLogout }) => {
   return (
+    <Nav style={{ backgroundColor: "#212833" }}>
+        <Col>
     <header>
-      <h3>Pow Chaser - The pow is calling, and I must go</h3>
+      <h3 style={{ color: "#C0C0C0" }}>Pow Chaser - The pow is calling, and I must go</h3>
       <ul>
         {!user.id ? (
           <>
@@ -19,26 +23,35 @@ const Navbar = ({ user, handleLogout }) => {
           </>
         ) : (
           <>
+          <Row >
             <li>
-              <NavLink to="/user" exact>
+            <Button variant="secondary" >
+              <NavLink style={{ color: "#C0C0C0" }} to="/user" exact>
                 Home
               </NavLink>
-            </li>
+              </Button>
+            </li><br></br>
             <li>
-            <NavLink to="/favorites" exact>
+            <Button variant="secondary" >
+            <NavLink style={{ color: "#C0C0C0" }} to="/favorites" exact>
                 Favorites
               </NavLink>
-            </li>
-        
+              </Button>
+            </li> <br></br>
             <li>
-                <NavLink to='/login' onClick={handleLogout}>
+            <Button variant="secondary" >
+                <NavLink style={{ color: "#C0C0C0" }} to='/login' onClick={handleLogout}>
                     Logout
               </NavLink>
+              </Button>
             </li>
+            </Row>
           </>
         )}
       </ul>
     </header>
+    </Col>
+    </Nav>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react' 
+// import User from './components/User.js'
 
 class Favorites extends React.Component {
   
@@ -6,7 +7,7 @@ class Favorites extends React.Component {
     render(){
         return(
             <div>
-               <p>Hello</p>
+               {/* {this.props.favorites.map(favorite => favorite.name)} */}
             </div>
         )
     }

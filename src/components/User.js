@@ -25,6 +25,7 @@ class User extends React.Component {
 
     componentDidMount = () => {
         this.fetchPow()
+        this.fetchFavorites()
         fetch('http://localhost:3000/pow')
         .then(res => res.json())
         .then(data =>  this.setState({
@@ -52,10 +53,19 @@ class User extends React.Component {
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({name: "Squaw Valley", rating: 9.5, resort_id: 1, user_id: this.props.user.id}),
+      body: JSON.stringify({name: "Squaw Valley", rating: 9.5, resort_id: 56, user_id: this.props.user.id}),
     })
     .then(res => res.json())
     .then(data => console.log(data))
+    }
+
+    fetchFavorites = () => {
+        // let favorites = []
+        fetch('http://localhost:3000/favorites')
+        .then(res => res.json())
+        .then(data => this.setState({
+            favorites: data
+        }))
     }
 
     fetchPow = () => {
@@ -247,6 +257,7 @@ class User extends React.Component {
     render() {
         return (
             <div>
+                <Favorites favorites={this.state.favorites}/>
                 <Container>
             <h1 className="title">{this.state.mountain} : {this.state.date}</h1>
             <Row>

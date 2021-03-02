@@ -20,8 +20,13 @@ const Navbar = ({ user, handleLogout }) => {
         ) : (
           <>
             <li>
-              <NavLink to="/login" exact>
+              <NavLink to="/user" exact>
                 Home
+              </NavLink>
+            </li>
+            <li>
+            <NavLink to="/favorites" exact>
+                Favorites
               </NavLink>
             </li>
         

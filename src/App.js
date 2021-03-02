@@ -5,7 +5,7 @@ import Navbar from './components/Navbar.js'
 import {Switch, withRouter, Redirect } from "react-router-dom";
 import Login from "./components/Login";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-
+import Favorites from './components/Favorites.js'
 const API = "http://localhost:3000/"
 
 class App extends Component {
@@ -110,7 +110,8 @@ class App extends Component {
           <Route path="/login" render={routerProps => <Login {...routerProps} handleLoginOrSignup={this.handleLogin} />} />
           <Route path="/signup" render={routerProps => <Login {...routerProps} handleLoginOrSignup={this.handleSignup}/>} />
           {!user.id && <Redirect to="/login" />}
-          <Route path="/user" render={routerProps => <User {...routerProps}/>} />
+          <Route path="/user" render={routerProps => <User user={this.state.user}{...routerProps}/>} />
+          <Route path="/favorites" render={routerProps => <Favorites user={this.state.user}{...routerProps}/>} />
     </div>
   );
 }

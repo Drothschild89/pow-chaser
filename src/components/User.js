@@ -5,6 +5,8 @@ import { LinkContainer } from "react-router-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
+import Favorites from './Favorites.js'
+
 class User extends React.Component {
     state={
         snowChange: 0,
@@ -17,7 +19,8 @@ class User extends React.Component {
         powChartXValues: [],
         powChartYValues: [],
         temperature: 0,
-        favorites: []
+        favorites: [],
+        resorts: []
     }
 
     componentDidMount = () => {
@@ -34,6 +37,25 @@ class User extends React.Component {
             latitude: data.data.station_information.location.lat,
             longitude: data.data.station_information.location.lng,
         }))
+    }
+
+    addToFavoritesSquaw = () => {
+        // fetch(`http://localhost:3000/resorts`)
+        // .then(res => res.json())
+        // .then(data => this.setState({
+        //     resorts: data
+        // }))
+        let newArray = []
+        fetch("http://localhost:3000/favorites", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({name: "Squaw Valley", rating: 9.5, resort_id: 1, user_id: this.props.user.id}),
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
     }
 
     fetchPow = () => {
@@ -274,17 +296,17 @@ class User extends React.Component {
                         <Col>
                         <div className="california">
                         <h2>California Mountains</h2>
-                        <Button onClick={this.getAlpine} variant="primary">Alpine Meadows</Button>{' '}  <Button variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
-                        <Button onClick={this.fetchPow} variant="primary">Squaw Valley</Button>{' '}  <Button variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
-                        <Button onClick={this.getHeavenly} variant="primary">Heavenly Valley</Button>{' '} <Button variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button onClick={this.getAlpine} variant="primary">Alpine Meadows</Button>{' '}  <Button id='3' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button onClick={this.fetchPow} variant="primary">Squaw Valley</Button>{' '}  <Button id='1' variant="primary" onClick={this.addToFavoritesSquaw}>Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button onClick={this.getHeavenly} variant="primary">Heavenly Valley</Button>{' '} <Button id='4' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
                         </div>
                         </Col>
                         <Col>
                         <div className="washington">
                         <h2>Washington Mountains</h2>
-                        <Button onClick={this.getStevens} variant="primary">Stevens Pass</Button>{' '} <Button variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
-                        <Button onClick={this.getParadise} variant="primary">Paradise, Mt. Rainier</Button>{' '} <Button variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
-                        <Button onClick={this.getCayuse} variant="primary">Cayuse / Crystal Mountain</Button>{' '} <Button variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button onClick={this.getStevens} variant="primary">Stevens Pass</Button>{' '} <Button id='5' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button onClick={this.getParadise} variant="primary">Paradise, Mt. Rainier</Button>{' '} <Button id='6' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
+                        <Button onClick={this.getCayuse} variant="primary">Cayuse / Crystal Mountain</Button>{' '} <Button id='7' variant="primary">Add To Favorites</Button>{' '}<br></br><br></br>
                         </div>
                         </Col>
                     </Row>

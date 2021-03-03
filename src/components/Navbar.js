@@ -23,7 +23,6 @@ const Navbar = ({ user, handleLogout }) => {
           </>
         ) : (
           <>
-          <Row >
             <li>
             <Button variant="secondary" >
               <NavLink style={{ color: "#C0C0C0" }} to="/user" exact>
@@ -39,13 +38,13 @@ const Navbar = ({ user, handleLogout }) => {
               </Button>
             </li> <br></br>
             <li>
-            <Button variant="secondary" >
+            <Button  class="btn btn-primary mx-auto d-block" variant="secondary" >
                 <NavLink style={{ color: "#C0C0C0" }} to='/login' onClick={handleLogout}>
                     Logout
               </NavLink>
               </Button>
             </li>
-            </Row>
+          
           </>
         )}
       </ul>

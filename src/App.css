@@ -42,26 +42,26 @@
   width: 325px;
   height: 275px;
   font-weight: bold;
-  background-color: #c0c0c0
+  background-color: #c0c0c0;
 }
 
-.title{
+.title {
   font-weight: bold;
 }
 
-.class-head{
+.class-head {
   background-color: white;
 }
 
-.california{
+.california {
   outline: 1px solid #333333;
-  width: 300px;
+  width: 400px;
   height: 250px;
   font-weight: bold;
   margin-left: 125px;
 }
 
-.washington{
+.washington {
   outline: 1px solid #333333;
   width: 375px;
   height: 250px;
@@ -69,8 +69,7 @@
   margin-left: 25px;
 }
 
-
-.visited{
+.visited {
   outline: 1px solid #333333;
   width: 100px;
   height: 250px;
@@ -80,20 +79,27 @@
 
 .o-d {
   outline: 1px solid #333333;
-  width: 1000px;
-  height: 30px;
-  margin-top: 10px;
+  /* width: 1000px;
+  height: 30px; */
 }
 
 .o-d-top {
   outline: 1px solid #333333;
   background-color: #242424;
-  width: 1000px;
-  height: 30px;
-  margin-top: 10px;
+  /* width: 1000px;
+  height: 30px; */
 }
 
 .favorite-p {
   color: #c0c0c0;
-  padding-top: 2px;
+}
+
+.favorite-p-two {
+  outline: 1px solid #333333;
+  /* width: 650px; */
+}
+
+.favorite-row {
+  outline: 1px solid #333333;
+  /* width: 700px; */
 }

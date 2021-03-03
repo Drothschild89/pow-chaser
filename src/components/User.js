@@ -173,10 +173,10 @@ class User extends React.Component {
     if (this.state.wishlist.length > 0) {
       return this.state.wishlist.map((listing) => {
         return (
-          <ul>
-            <li>{listing.resort.name}</li>
-            <li>{listing.rating}</li>
-          </ul>
+          <div>
+            <p>{listing.resort.name}</p>
+            <p>{listing.rating}</p>
+          </div>
         );
       });
     }
@@ -283,6 +283,12 @@ class User extends React.Component {
                         >
                           Add To Favorites
                         </Button>{" "}
+                        <Button
+                          variant="primary"
+                          onClick={() => this.addToWishList(resort)}
+                        >
+                          Wish List
+                        </Button>{" "}
                         <br></br>
                         <br></br>
                       </div>
@@ -291,7 +297,7 @@ class User extends React.Component {
               </div>
             </Col>
           </Row>
-          <br></br> <br></br> <br></br> <br></br>
+          <br></br> <br></br> <br></br>
           <Row>
             <Col>
               <Card

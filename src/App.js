@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
-import './App.css';
-import User from './components/User.js'
-import Navbar from './components/Navbar.js'
-import {Switch, withRouter, Redirect } from "react-router-dom";
+import React, { Component, Fragment } from "react";
+import "./App.css";
+import User from "./components/User.js";
+import PowNav from "./components/PowNav.js";
+import { Switch, withRouter, Redirect } from "react-router-dom";
 import Login from "./components/Login";
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Favorites from './components/Favorites.js'
-const API = "http://localhost:3000/"
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Favorites from "./components/Favorites.js";
+import "bootstrap/dist/css/bootstrap.min.css";
+const API = "http://localhost:3000/";
 
 class App extends Component {
   state = {
@@ -15,7 +16,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    document.body.style.background = 'skyblue'
+    document.body.style.background = "skyblue";
     const token = localStorage.token;
     if (token) {
       this.persistUser(token);
@@ -44,7 +45,7 @@ class App extends Component {
   };
 
   handleAuthResponse = (data) => {
-    console.log(data)
+    console.log(data);
     if (data.user) {
       const { user, jwt } = data;
 
@@ -104,17 +105,37 @@ class App extends Component {
 
   render() {
     const { user, error } = this.state;
-  return (
-    <div className="App">
-      <Navbar user={user} handleLogout={this.handleLogout}/>
-          <Route path="/login" render={routerProps => <Login {...routerProps} handleLoginOrSignup={this.handleLogin} />} />
-          <Route path="/signup" render={routerProps => <Login {...routerProps} handleLoginOrSignup={this.handleSignup}/>} />
-          {!user.id && <Redirect to="/login" />}
-          <Route path="/user" render={routerProps => <User user={this.state.user}{...routerProps}/>} />
-          <Route path="/favorites" render={routerProps => <Favorites user={this.state.user}{...routerProps}/>} />
-    </div>
-  );
-}
+    return (
+      <div className="App">
+        <PowNav user={user} handleLogout={this.handleLogout} />
+        <Route
+          path="/login"
+          render={(routerProps) => (
+            <Login {...routerProps} handleLoginOrSignup={this.handleLogin} />
+          )}
+        />
+        <Route
+          path="/signup"
+          render={(routerProps) => (
+            <Login {...routerProps} handleLoginOrSignup={this.handleSignup} />
+          )}
+        />
+        {!user.id && <Redirect to="/login" />}
+        <Route
+          path="/user"
+          render={(routerProps) => (
+            <User user={this.state.user} {...routerProps} />
+          )}
+        />
+        <Route
+          path="/favorites"
+          render={(routerProps) => (
+            <Favorites user={this.state.user} {...routerProps} />
+          )}
+        />
+      </div>
+    );
+  }
 }
 
 export default withRouter(App);

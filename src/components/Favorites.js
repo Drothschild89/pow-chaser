@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Form, Alert } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 class Favorites extends React.Component {
   state = {
@@ -42,44 +42,33 @@ class Favorites extends React.Component {
   render() {
     return (
       <Container>
-        <div className="favorites-container">
-          <div className="o-d-top">
-            <Row>
-              <Col xs={6}>
-                <p className="favorite-p"> Resort </p>
-              </Col>
-              <Col xs={6}>
-                <p className="favorite-p"> Rating </p>
-              </Col>
-            </Row>
-          </div>
-          <Row>
-            <Col xs={6}>
-              {this.state.favorites.map((resort) => (
-                <Row className="favorite-row">
-                  <p>{resort.resort.name}</p>
-                </Row>
-              ))}
-            </Col>
-            <Col xs={6}>
-              {this.state.favorites.map((resort) => (
-                <Row>
-                  <p>
-                    {resort.resort.rating} {""}{" "}
-                    <Button
-                      variant="primary"
-                      value={`${resort.id}`}
-                      size="sm"
-                      onClick={(e) => this.removeFromFavorites(e)}
-                    >
-                      Remove From Favorites
-                    </Button>
-                  </p>
-                </Row>
-              ))}
-            </Col>
-          </Row>
-        </div>
+        <Table>
+          <thead>
+            <tr>
+              <th>Resort</th>
+              <th>Rating</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.favorites.map((resort) => (
+              <tr>
+                <td>{resort.resort.name}</td>
+                <td>{resort.resort.rating}</td>
+                <td>
+                  <Button
+                    variant="primary"
+                    value={`${resort.id}`}
+                    size="sm"
+                    onClick={(e) => this.removeFromFavorites(e)}
+                  >
+                    Remove From Favorites
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </Container>
     );
   }

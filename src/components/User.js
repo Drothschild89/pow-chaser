@@ -6,6 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import Favorites from "./Favorites.js";
+import Card from "react-bootstrap/Card";
+import CardColumns from "react-bootstrap/CardColumns";
 
 class User extends React.Component {
   state = {
@@ -168,7 +170,6 @@ class User extends React.Component {
   };
 
   renderWishList = () => {
-    //   debugger
     if (this.state.wishlist.length > 0) {
       return this.state.wishlist.map((listing) => {
         return (
@@ -289,11 +290,22 @@ class User extends React.Component {
                 })}
               </div>
             </Col>
+          </Row>
+          <br></br> <br></br> <br></br> <br></br>
+          <Row>
             <Col>
-              <div className="visited">
-                <p>Wish List</p>
-                {this.renderWishList()}
-              </div>
+              <Card
+                border="dark"
+                bg="info"
+                text="light"
+                style={{ width: "18rem" }}
+                className="text-center"
+              >
+                <Card.Body>
+                  <Card.Header>Wish List</Card.Header>
+                  <Card.Text>{this.renderWishList()}</Card.Text>
+                </Card.Body>
+              </Card>
             </Col>
           </Row>
         </Container>

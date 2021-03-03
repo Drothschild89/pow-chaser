@@ -32,8 +32,9 @@ const PowNav = ({ user, handleLogout }) => {
 
             <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
           </>
-        )}
+        )}{" "}
       </Nav>
+      <h3>The Pow is calling, and I must go</h3>
     </Navbar>
   );
 };

@@ -137,12 +137,11 @@ class User extends React.Component {
 
   addToWishList = (resort) => {
     let data = {
-      wishlist: {
-        rating: resort.rating,
-        resort_id: resort.id,
-        user_id: this.props.user.id,
-      },
+      rating: resort.rating,
+      resort_id: resort.id,
+      user_id: this.props.user.id,
     };
+    // debugger;
     fetch("http://localhost:3000/wishlists", {
       method: "POST",
       headers: {
@@ -220,15 +219,17 @@ class User extends React.Component {
             </Col>
             <Col>
               <br></br> <br></br> <br></br> <br></br>
-              <div className="stats">
-                <h3>Today's Statistics:</h3>
-                <p>Snow Depth: {this.state.snowDepth} inches</p>
-                <p>Change in powder levels: {this.state.snowChange} inches</p>
-                <p>Elevation: {this.state.elevation} feet</p>
-                <p>Latitude: {this.state.latitude}</p>
-                <p>Longitude: {this.state.longitude}</p>
-                <p>Temperature: {this.state.temperature}F</p>
-              </div>
+              <Card border="dark" bg="light">
+                <Card.Title>Today's Statistics:</Card.Title>
+                <Card.Text>Snow Depth: {this.state.snowDepth} inches</Card.Text>
+                <Card.Text>
+                  Change in powder levels: {this.state.snowChange} inches
+                </Card.Text>
+                <Card.Text>Elevation: {this.state.elevation} feet</Card.Text>
+                <Card.Text>Latitude: {this.state.latitude}</Card.Text>
+                <Card.Text>Longitude: {this.state.longitude}</Card.Text>
+                <Card.Text>Temperature: {this.state.temperature}F</Card.Text>
+              </Card>
             </Col>
           </Row>
           <Row>

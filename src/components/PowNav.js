@@ -29,12 +29,11 @@ const PowNav = ({ user, handleLogout }) => {
             <LinkContainer to="/favorites">
               <Nav.Link>Favorites</Nav.Link>
             </LinkContainer>
-
             <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
           </>
         )}{" "}
       </Nav>
-      <Navbar.Brand>The Pow is calling, and I must go</Navbar.Brand>
+      <Navbar.Brand>The pow is calling, and I must go</Navbar.Brand>
     </Navbar>
   );
 };

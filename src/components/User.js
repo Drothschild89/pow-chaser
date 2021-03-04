@@ -151,11 +151,13 @@ class User extends React.Component {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((resort) =>
-        this.setState({
-          wishlist: resort,
-        })
-      );
+      .then((resort) => {
+        if (!resort.error) {
+          this.setState({
+            wishlist: [...this.state.wishlist, resort],
+          });
+        }
+      });
   };
 
   getWishList = () => {
@@ -179,10 +181,37 @@ class User extends React.Component {
             <Col>
               <p>{listing.rating}</p>
             </Col>
+            <Col>
+              <Button
+                value={`${listing.id}`}
+                onClick={(e) => this.deleteWishListItem(e)}
+              >
+                Remove
+              </Button>
+            </Col>
           </Row>
         );
       });
     }
+  };
+
+  deleteWishListItem = (e) => {
+    fetch(`http://localhost:3000/wishlists/` + e.target.value, {
+      method: "DELETE",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((wishlist) => {
+        let newWishList = this.state.wishlist.filter(
+          (w) => w.id !== wishlist.id
+        );
+        this.setState({
+          wishlist: newWishList,
+        });
+      });
   };
 
   render() {

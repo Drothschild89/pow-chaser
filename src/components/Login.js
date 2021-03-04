@@ -21,6 +21,8 @@ class Login extends React.Component {
         <br></br>
         <br></br>
         <br></br>
+        <Navbar.Brand>Welcome to the shred shed</Navbar.Brand>
+        <br></br> <br></br>
         <form onSubmit={(e) => this.props.handleLoginOrSignup(e, this.state)}>
           <label>Username: </label>
           {""}
@@ -41,7 +43,6 @@ class Login extends React.Component {
           <br />
           <input type="submit" value="Submit" />
         </form>
-        <Navbar.Brand>Welcome to the shred shed</Navbar.Brand>
       </div>
     );
   }

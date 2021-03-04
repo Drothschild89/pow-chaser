@@ -57,8 +57,6 @@ class Favorites extends React.Component {
     })
       .then((res) => res.json())
       .then((favorite) => {
-        // let newRating = favorite.rating === e.target.value;
-        // favorite.rating = newRating;
         let newRating = this.state.favorites.map((f) =>
           f.id == favorite.id ? favorite : f
         );

@@ -36,7 +36,6 @@ class User extends React.Component {
   };
 
   fetchFavorites = () => {
-    // let favorites = []
     fetch("http://localhost:3000/favorites")
       .then((res) => res.json())
       .then((data) =>
@@ -141,7 +140,6 @@ class User extends React.Component {
       resort_id: resort.id,
       user_id: this.props.user.id,
     };
-    // debugger;
     fetch("http://localhost:3000/wishlists", {
       method: "POST",
       headers: {
@@ -346,7 +344,6 @@ class User extends React.Component {
               >
                 <Card.Body>
                   <Card.Title>Wish List</Card.Title>
-
                   <Card.Text>{this.renderWishList()}</Card.Text>
                 </Card.Body>
               </Card>

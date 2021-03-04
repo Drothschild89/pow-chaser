@@ -76,7 +76,8 @@ class Favorites extends React.Component {
             <tr>
               <th>Resort</th>
               <th>Rating</th>
-              <th></th>
+              <th>Edit Rating</th>
+              <th>Remove From Favorites</th>
             </tr>
           </thead>
           <tbody>
@@ -86,7 +87,7 @@ class Favorites extends React.Component {
                 <td>{resort.rating}</td>
                 <td>
                   <form>
-                    <label>Edit Rating: </label>
+                    <label></label>
                     <select
                       name="option"
                       id={`${resort.id}`}
@@ -112,7 +113,7 @@ class Favorites extends React.Component {
                     size="sm"
                     onClick={(e) => this.removeFromFavorites(e)}
                   >
-                    Remove From Favorites
+                    Remove
                   </Button>
                 </td>
               </tr>

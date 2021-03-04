@@ -1,4 +1,6 @@
 import React from "react";
+import { Container, Row, Col, Button, Form, Navbar } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class Login extends React.Component {
   state = {
@@ -16,8 +18,12 @@ class Login extends React.Component {
   render() {
     return (
       <div className="Login">
+        <br></br>
+        <br></br>
+        <br></br>
         <form onSubmit={(e) => this.props.handleLoginOrSignup(e, this.state)}>
-          <label>Username</label>
+          <label>Username: </label>
+          {""}
           <input
             type="text"
             name="username"
@@ -25,7 +31,7 @@ class Login extends React.Component {
             onChange={this.handleChange}
           />
           <br />
-          <label>Password</label>
+          <label>Password: </label>{" "}
           <input
             type="password"
             name="password"
@@ -35,6 +41,7 @@ class Login extends React.Component {
           <br />
           <input type="submit" value="Submit" />
         </form>
+        <Navbar.Brand>Welcome to the shred shed</Navbar.Brand>
       </div>
     );
   }

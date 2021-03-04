@@ -172,10 +172,14 @@ class User extends React.Component {
     if (this.state.wishlist.length > 0) {
       return this.state.wishlist.map((listing) => {
         return (
-          <div>
-            <p>{listing.resort.name}</p>
-            <p>{listing.rating}</p>
-          </div>
+          <Row>
+            <Col>
+              <p>{listing.resort.name}</p>
+            </Col>
+            <Col>
+              <p>{listing.rating}</p>
+            </Col>
+          </Row>
         );
       });
     }
@@ -185,9 +189,13 @@ class User extends React.Component {
     return (
       <div>
         <Container>
-          <h1 className="title">
-            {this.state.mountain} : {this.state.date}
-          </h1>
+          <Navbar.Brand>
+            <h1 className="title">
+              {this.state.mountain} : {this.state.date}
+            </h1>
+          </Navbar.Brand>
+          <br></br>
+          <Navbar.Brand>Click a mountain below to find the pow</Navbar.Brand>
           <Row>
             <Col>
               <Plot
@@ -219,7 +227,7 @@ class User extends React.Component {
             </Col>
             <Col>
               <br></br> <br></br> <br></br> <br></br>
-              <Card border="dark" bg="light">
+              <Card border="dark" bg="light" text="dark">
                 <Card.Title>Today's Statistics:</Card.Title>
                 <Card.Text>Snow Depth: {this.state.snowDepth} inches</Card.Text>
                 <Card.Text>
@@ -234,8 +242,8 @@ class User extends React.Component {
           </Row>
           <Row>
             <Col>
-              <div className="california">
-                <h2>California Mountains</h2>
+              <Card bg="dark" border="secondary" text="light">
+                <Card.Title>California Mountains</Card.Title>
                 {this.state.resorts.map((resort) => {
                   if (resort.us_state === "CA")
                     return (
@@ -263,11 +271,11 @@ class User extends React.Component {
                       </div>
                     );
                 })}
-              </div>
+              </Card>
             </Col>
             <Col>
-              <div className="washington">
-                <h2>Washington Mountains</h2>
+              <Card bg="dark" border="secondary" text="light">
+                <Card.Title>Washington Mountains</Card.Title>
                 {this.state.resorts.map((resort) => {
                   if (resort.us_state === "WA")
                     return (
@@ -295,7 +303,7 @@ class User extends React.Component {
                       </div>
                     );
                 })}
-              </div>
+              </Card>
             </Col>
           </Row>
           <br></br> <br></br> <br></br>
@@ -303,13 +311,13 @@ class User extends React.Component {
             <Col>
               <Card
                 border="dark"
-                bg="info"
-                text="light"
-                style={{ width: "18rem" }}
-                className="text-center"
+                bg="light"
+                text="dark"
+                style={{ width: "30rem" }}
               >
                 <Card.Body>
-                  <Card.Header>Wish List</Card.Header>
+                  <Card.Title>Wish List</Card.Title>
+
                   <Card.Text>{this.renderWishList()}</Card.Text>
                 </Card.Body>
               </Card>

@@ -138,37 +138,49 @@ class User extends React.Component {
   };
 
   addToWishList = (resort) => {
+    let token = localStorage.getItem("token");
     let data = {
       rating: resort.rating,
       resort_id: resort.id,
       user_id: this.props.user.id,
     };
-    fetch("http://localhost:3000/wishlists", {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((resort) => {
-        if (!resort.error) {
-          this.setState({
-            wishlist: [...this.state.wishlist, resort],
-          });
-        }
-      });
+    if (token) {
+      fetch("http://localhost:3000/wishlists", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((resort) => {
+          if (!resort.error) {
+            this.setState({
+              wishlist: [...this.state.wishlist, resort],
+            });
+          }
+        });
+    }
   };
 
   getWishList = () => {
-    fetch("http://localhost:3000/wishlists")
-      .then((res) => res.json())
-      .then((data) =>
-        this.setState({
-          wishlist: data,
-        })
-      );
+    let token = localStorage.getItem("token");
+    if (token) {
+      fetch("http://localhost:3000/wishlists", {
+        method: "GET",
+        headers: {
+          "Authorization": "Bearer " + token,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) =>
+          this.setState({
+            wishlist: data,
+          })
+        );
+    }
   };
 
   renderWishList = () => {
@@ -197,22 +209,26 @@ class User extends React.Component {
   };
 
   deleteWishListItem = (e) => {
-    fetch(`http://localhost:3000/wishlists/` + e.target.value, {
-      method: "DELETE",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((wishlist) => {
-        let newWishList = this.state.wishlist.filter(
-          (w) => w.id !== wishlist.id
-        );
-        this.setState({
-          wishlist: newWishList,
+    let token = localStorage.getItem("token");
+    if (token) {
+      fetch(`http://localhost:3000/wishlists/` + e.target.value, {
+        method: "DELETE",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,
+        },
+      })
+        .then((res) => res.json())
+        .then((wishlist) => {
+          let newWishList = this.state.wishlist.filter(
+            (w) => w.id !== wishlist.id
+          );
+          this.setState({
+            wishlist: newWishList,
+          });
         });
-      });
+    }
   };
 
   render() {

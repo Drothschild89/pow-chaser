@@ -9,61 +9,115 @@ import { Table } from "react-bootstrap";
 class Favorites extends React.Component {
   state = {
     favorites: [],
+    notes: "",
+    noteInput: "",
   };
 
   componentDidMount = () => {
-    fetch("http://localhost:3000/favorites")
-      .then((res) => res.json())
-      .then((data) =>
-        this.setState({
-          favorites: data,
-        })
-      );
+    let token = localStorage.getItem("token");
+    if (token) {
+      fetch("http://localhost:3000/favorites", {
+        method: "GET",
+        headers: {
+          "Authorization": "Bearer " + token,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) =>
+          this.setState({
+            favorites: data,
+          })
+        );
+    }
   };
 
   removeFromFavorites = (e) => {
-    fetch(`http://localhost:3000/favorites/` + e.target.value, {
-      method: "DELETE",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((favorite) => {
-        let newFavorites = this.state.favorites.filter(
-          (f) => f.id !== favorite.id
-        );
-        this.setState({
-          favorites: newFavorites,
+    let token = localStorage.getItem("token");
+    if (token) {
+      fetch(`http://localhost:3000/favorites/` + e.target.value, {
+        method: "DELETE",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,
+        },
+      })
+        .then((res) => res.json())
+        .then((favorite) => {
+          let newFavorites = this.state.favorites.filter(
+            (f) => f.id !== favorite.id
+          );
+          this.setState({
+            favorites: newFavorites,
+          });
         });
-      });
+    }
   };
 
   updateRating = (e, resort) => {
-    // debugger;
+    let token = localStorage.getItem("token");
     let favorite = {
       rating: e.target.value,
       resort_id: resort.resort.id,
       user_id: this.props.user.id,
     };
-    fetch(`http://localhost:3000/favorites/` + e.target.id, {
-      method: "PATCH",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ favorite }),
-    })
-      .then((res) => res.json())
-      .then((favorite) => {
-        let newRating = this.state.favorites.map((f) =>
-          f.id == favorite.id ? favorite : f
-        );
-        this.setState({
-          favorites: newRating,
+    if (token) {
+      fetch(`http://localhost:3000/favorites/` + e.target.id, {
+        method: "PATCH",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,
+        },
+        body: JSON.stringify({ favorite }),
+      })
+        .then((res) => res.json())
+        .then((favorite) => {
+          let newRating = this.state.favorites.map((f) =>
+            f.id == favorite.id ? favorite : f
+          );
+          this.setState({
+            favorites: newRating,
+          });
         });
-      });
+    }
+  };
+
+  addNote = (e, resort) => {
+    e.preventDefault();
+    let token = localStorage.getItem("token");
+    let favorite = {
+      note: this.state.noteInput,
+      resort_id: resort.resort.id,
+      user_id: this.props.user.id,
+    };
+    if (token) {
+      fetch(`http://localhost:3000/favorites/` + resort.id, {
+        method: "PATCH",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,
+        },
+        body: JSON.stringify({ favorite }),
+      })
+        .then((res) => res.json())
+        .then((favorite) => {
+          console.log(favorite);
+          let newNote = this.state.favorites.map((n) =>
+            n.id == favorite.id ? favorite : n
+          );
+          this.setState({
+            favorites: newNote,
+          });
+        });
+    }
+  };
+
+  handleNoteChange = (e) => {
+    this.setState({
+      noteInput: e.target.value,
+    });
   };
 
   render() {
@@ -113,6 +167,18 @@ class Favorites extends React.Component {
                   >
                     Remove
                   </Button>
+                </td>
+                <td>{resort.note}</td>
+                <td>
+                  <form onSubmit={(e) => this.addNote(e, resort)}>
+                    <label>Note:</label>
+                    <input
+                      type="text"
+                      onChange={(e) => this.handleNoteChange(e)}
+                      id={`${resort.id}`}
+                    ></input>
+                    <input type="submit" value="Save Note" />
+                  </form>
                 </td>
               </tr>
             ))}

@@ -102,6 +102,7 @@ class User extends React.Component {
   };
 
   handleFavorites = (resort) => {
+    let token = localStorage.getItem("token");
     let data = {
       favorite: {
         rating: resort.rating,
@@ -109,19 +110,21 @@ class User extends React.Component {
         user_id: this.props.user.id,
       },
     };
-    console.log(data);
-    fetch("http://localhost:3000/favorites", {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((favorite) => {
-        console.log(favorite);
-      });
+    if (token) {
+      fetch("http://localhost:3000/favorites", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((favorite) => {
+          console.log(favorite);
+        });
+    }
   };
 
   fetchMountains = () => {

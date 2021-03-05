@@ -8,6 +8,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import Favorites from "./Favorites.js";
 import Card from "react-bootstrap/Card";
 import CardColumns from "react-bootstrap/CardColumns";
+import Logo from "../img/powchaser.png";
 
 class User extends React.Component {
   state = {
@@ -32,7 +33,6 @@ class User extends React.Component {
     this.getAlpine();
     this.fetchFavorites();
     this.getWishList();
-    console.log(this.state.resorts);
   };
 
   fetchFavorites = () => {
@@ -180,7 +180,7 @@ class User extends React.Component {
               <p>{listing.resort.name}</p>
             </Col>
             <Col>
-              <p>{listing.rating}</p>
+              <p>{Math.floor(listing.rating)}</p>
             </Col>
             <Col>
               <Button
@@ -219,6 +219,8 @@ class User extends React.Component {
     return (
       <div>
         <Container>
+          <img src={Logo} className="order-img" />
+          <br></br>
           <Navbar.Brand>
             <h1 className="title">
               {this.state.mountain} : {this.state.date}
@@ -259,14 +261,16 @@ class User extends React.Component {
               <br></br> <br></br> <br></br> <br></br>
               <Card border="dark" bg="light" text="dark">
                 <Card.Title>Today's Statistics:</Card.Title>
-                <Card.Text>Snow Depth: {this.state.snowDepth} inches</Card.Text>
                 <Card.Text>
-                  Change in powder levels: {this.state.snowChange} inches
+                  Snow Depth: {this.state.snowDepth} inches{" "}
                 </Card.Text>
+                <Card.Text>
+                  Daily change in powder levels: {this.state.snowChange}inches
+                </Card.Text>
+                <Card.Text>Temperature: {this.state.temperature}F</Card.Text>
                 <Card.Text>Elevation: {this.state.elevation} feet</Card.Text>
                 <Card.Text>Latitude: {this.state.latitude}</Card.Text>
                 <Card.Text>Longitude: {this.state.longitude}</Card.Text>
-                <Card.Text>Temperature: {this.state.temperature}F</Card.Text>
               </Card>
             </Col>
           </Row>

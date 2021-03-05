@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Form, Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import Logo from "../img/powchaser.png";
 
 const PowNav = ({ user, handleLogout }) => {
   return (

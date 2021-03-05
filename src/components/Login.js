@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button, Form, Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Logo from "../img/powchaser.png";
 
 class Login extends React.Component {
   state = {
@@ -18,7 +19,7 @@ class Login extends React.Component {
   render() {
     return (
       <div className="Login">
-        <br></br>
+        <img src={Logo} className="order-img" />
         <br></br>
         <br></br>
         <Navbar.Brand>Welcome to the shred shed</Navbar.Brand>

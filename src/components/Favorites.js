@@ -130,13 +130,15 @@ class Favorites extends React.Component {
               <th>Rating</th>
               <th>Edit Rating</th>
               <th>Remove From Favorites</th>
+              <th>Notes</th>
+              <th>Leave a Note</th>
             </tr>
           </thead>
           <tbody>
             {this.state.favorites.map((resort) => (
               <tr>
                 <td>{resort.resort.name}</td>
-                <td>{resort.rating}</td>
+                <td>{Math.floor(resort.rating)}</td>
                 <td>
                   <form>
                     <label></label>

@@ -10,6 +10,8 @@ import Card from "react-bootstrap/Card";
 import CardColumns from "react-bootstrap/CardColumns";
 import Logo from "../img/powchaser.png";
 import Resorts from "./Resort.js";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 
 class User extends React.Component {
   state = {
@@ -27,13 +29,24 @@ class User extends React.Component {
     resorts: [],
     visited: [],
     wishlist: [],
+    us_state: "",
   };
 
   componentDidMount = () => {
     this.fetchMountains();
-    this.getAlpine();
+    // this.getAlpine();
     this.fetchFavorites();
     this.getWishList();
+  };
+
+  getStates = () => {
+    let us_states = [];
+    this.state.resorts.forEach((resort) => {
+      if (!us_states.includes(resort.us_state)) {
+        us_states.push(resort.us_state);
+      }
+    });
+    return us_states;
   };
 
   fetchFavorites = () => {
@@ -47,30 +60,37 @@ class User extends React.Component {
   };
 
   fetchMountainData = (resort) => {
-    let mountain = resort.name.split(" ")[0].toLowerCase();
+    // let mountain = resort.name.split(" ")[0].toLowerCase();
     // let mountain = resort.name.split(' ').join('-')
-    let API_Call = `http://localhost:3000/${mountain}`;
+    let API_Call = `http://localhost:3000/pow`;
     let powChartXValuesFunction = [];
     let powChartYValuesFunction = [];
-    fetch(API_Call)
+    fetch(API_Call, {
+      method: "POST",
+      headers: {
+        "content-type": "Application/json",
+      },
+      body: JSON.stringify({ resort_id: resort.id }),
+    })
       .then((res) => res.json())
       .then((data) => {
-        data.data.data.map((pow) => powChartXValuesFunction.push(pow.Date));
-        data.data.data.map((pow) =>
+        console.log(data);
+        data.data.map((pow) => powChartXValuesFunction.push(pow.Date));
+        data.data.map((pow) =>
           powChartYValuesFunction.push(parseInt(pow["Snow Depth (in)"]))
         );
         this.setState({
           powChartXValues: powChartXValuesFunction,
           powChartYValues: powChartYValuesFunction,
-          date: data.data.data[30].Date,
-          snowDepth: data.data.data[30]["Snow Depth (in)"],
-          snowChange: data.data.data[30]["Change In Snow Depth (in)"],
+          date: data.data[30].Date,
+          snowDepth: data.data[30]["Snow Depth (in)"],
+          snowChange: data.data[30]["Change In Snow Depth (in)"],
           temperature:
-            data.data.data[30]["Observed Air Temperature (degrees farenheit)"],
-          elevation: data.data.station_information.elevation,
-          mountain: data.data.station_information.name,
-          latitude: data.data.station_information.location.lat,
-          longitude: data.data.station_information.location.lng,
+            data.data[30]["Observed Air Temperature (degrees farenheit)"],
+          elevation: data.station_information.elevation,
+          mountain: data.station_information.name,
+          latitude: data.station_information.location.lat,
+          longitude: data.station_information.location.lng,
         });
       });
   };
@@ -232,6 +252,12 @@ class User extends React.Component {
     }
   };
 
+  setUsState = (s) => {
+    this.setState({
+      us_state: s,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -294,9 +320,28 @@ class User extends React.Component {
           <Row>
             <Col>
               <Card bg="dark" border="secondary" text="light">
-                <Card.Title>California Mountains</Card.Title>
+                <Card.Title>Choose State</Card.Title>
+                <div>
+                  <DropdownButton
+                    id="dropdown-basic-button"
+                    title="Pick A State"
+                  >
+                    {" "}
+                    {this.getStates().map((s) => {
+                      return (
+                        <Dropdown.Item
+                          onClick={() => this.setUsState(s)}
+                          className="dropdown-item"
+                          href="#"
+                        >
+                          {s}
+                        </Dropdown.Item>
+                      );
+                    })}
+                  </DropdownButton>
+                </div>
                 {this.state.resorts.map((resort) => {
-                  if (resort.us_state === "CA")
+                  if (resort.us_state === this.state.us_state)
                     return (
                       <div>
                         <Button
@@ -324,41 +369,6 @@ class User extends React.Component {
                 })}
               </Card>
             </Col>
-            <Col>
-              <Card bg="dark" border="secondary" text="light">
-                <Card.Title>Washington Mountains</Card.Title>
-                {this.state.resorts.map((resort) => {
-                  if (resort.us_state === "WA")
-                    return (
-                      <div>
-                        <Button
-                          onClick={() => this.fetchMountainData(resort)}
-                          variant="primary"
-                        >
-                          {resort.name}
-                        </Button>{" "}
-                        <Button
-                          variant="primary"
-                          onClick={() => this.handleFavorites(resort)}
-                        >
-                          Add To Favorites
-                        </Button>{" "}
-                        <Button
-                          variant="primary"
-                          onClick={() => this.addToWishList(resort)}
-                        >
-                          Wish List
-                        </Button>{" "}
-                        <br></br>
-                        <br></br>
-                      </div>
-                    );
-                })}
-              </Card>
-            </Col>
-          </Row>
-          <br></br> <br></br> <br></br>
-          <Row>
             <Col>
               <Card
                 border="dark"
@@ -373,6 +383,8 @@ class User extends React.Component {
               </Card>
             </Col>
           </Row>
+          <br></br> <br></br> <br></br>
+          <Row></Row>
         </Container>
       </div>
     );

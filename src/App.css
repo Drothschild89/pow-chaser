@@ -117,3 +117,12 @@
   /* 
   justify-content: center; */
 }
+
+.mountain {
+  position: absolute;
+  top: 4rem;
+  left: 1rem;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+}

@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Favorites from "./components/Favorites.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Resort from "./components/Resort.js";
+import MapContainer from "./components/MapContainer.js";
 
 const API = "http://localhost:3000/";
 

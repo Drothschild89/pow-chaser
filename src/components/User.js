@@ -9,6 +9,7 @@ import Favorites from "./Favorites.js";
 import Card from "react-bootstrap/Card";
 import CardColumns from "react-bootstrap/CardColumns";
 import Logo from "../img/powchaser.png";
+import Resorts from "./Resort.js";
 
 class User extends React.Component {
   state = {

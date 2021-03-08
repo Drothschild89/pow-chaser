@@ -7,6 +7,8 @@ import Login from "./components/Login";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Favorites from "./components/Favorites.js";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Resort from "./components/Resort.js";
+
 const API = "http://localhost:3000/";
 
 class App extends Component {
@@ -131,6 +133,12 @@ class App extends Component {
           path="/favorites"
           render={(routerProps) => (
             <Favorites user={this.state.user} {...routerProps} />
+          )}
+        />
+        <Route
+          path="/resorts"
+          render={(routerProps) => (
+            <Resort user={this.state.user} {...routerProps} />
           )}
         />
       </div>

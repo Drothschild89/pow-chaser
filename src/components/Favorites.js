@@ -103,7 +103,6 @@ class Favorites extends React.Component {
       })
         .then((res) => res.json())
         .then((favorite) => {
-          console.log(favorite);
           let newNote = this.state.favorites.map((n) =>
             n.id == favorite.id ? favorite : n
           );

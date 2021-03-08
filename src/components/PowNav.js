@@ -11,7 +11,6 @@ const PowNav = ({ user, handleLogout }) => {
       <LinkContainer to="/user">
         <Navbar.Brand>PowChaser</Navbar.Brand>
       </LinkContainer>
-
       <Nav className="mr-auto">
         {!user.id ? (
           <>
@@ -29,6 +28,9 @@ const PowNav = ({ user, handleLogout }) => {
             </LinkContainer>
             <LinkContainer to="/favorites">
               <Nav.Link>Favorites</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/resorts">
+              <Nav.Link>Explore</Nav.Link>
             </LinkContainer>
             <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
           </>

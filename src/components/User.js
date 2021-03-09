@@ -34,7 +34,7 @@ class User extends React.Component {
 
   componentDidMount = () => {
     this.fetchMountains();
-    // this.getAlpine();
+    // this.getSquaw();
     this.fetchFavorites();
     this.getWishList();
   };
@@ -95,29 +95,29 @@ class User extends React.Component {
       });
   };
 
-  getAlpine = () => {
-    let API_Call = "http://localhost:3000/alpine";
+  getSquaw = () => {
+    let API_Call = "http://localhost:3000/squaw";
     let powChartXValuesFunction = [];
     let powChartYValuesFunction = [];
     fetch(API_Call)
       .then((res) => res.json())
       .then((data) => {
-        data.data.data.map((pow) => powChartXValuesFunction.push(pow.Date));
-        data.data.data.map((pow) =>
+        data.data.map((pow) => powChartXValuesFunction.push(pow.Date));
+        data.data.map((pow) =>
           powChartYValuesFunction.push(parseInt(pow["Snow Depth (in)"]))
         );
         this.setState({
           powChartXValues: powChartXValuesFunction,
           powChartYValues: powChartYValuesFunction,
-          date: data.data.data[30].Date,
-          snowDepth: data.data.data[30]["Snow Depth (in)"],
-          snowChange: data.data.data[30]["Change In Snow Depth (in)"],
+          date: data.data[30].Date,
+          snowDepth: data.data[30]["Snow Depth (in)"],
+          snowChange: data.data[30]["Change In Snow Depth (in)"],
           temperature:
             data.data.data[30]["Observed Air Temperature (degrees farenheit)"],
-          elevation: data.data.station_information.elevation,
-          mountain: data.data.station_information.name,
-          latitude: data.data.station_information.location.lat,
-          longitude: data.data.station_information.location.lng,
+          elevation: data.station_information.elevation,
+          mountain: data.station_information.name,
+          latitude: data.station_information.location.lat,
+          longitude: data.station_information.location.lng,
         });
       });
   };

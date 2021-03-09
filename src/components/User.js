@@ -34,7 +34,7 @@ class User extends React.Component {
 
   componentDidMount = () => {
     this.fetchMountains();
-    // this.getSquaw();
+    this.getSquaw();
     this.fetchFavorites();
     this.getWishList();
   };
@@ -74,7 +74,6 @@ class User extends React.Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         data.data.map((pow) => powChartXValuesFunction.push(pow.Date));
         data.data.map((pow) =>
           powChartYValuesFunction.push(parseInt(pow["Snow Depth (in)"]))
@@ -102,22 +101,23 @@ class User extends React.Component {
     fetch(API_Call)
       .then((res) => res.json())
       .then((data) => {
-        data.data.map((pow) => powChartXValuesFunction.push(pow.Date));
-        data.data.map((pow) =>
+        console.log(data);
+        data.data.data.map((pow) => powChartXValuesFunction.push(pow.Date));
+        data.data.data.map((pow) =>
           powChartYValuesFunction.push(parseInt(pow["Snow Depth (in)"]))
         );
         this.setState({
           powChartXValues: powChartXValuesFunction,
           powChartYValues: powChartYValuesFunction,
-          date: data.data[30].Date,
-          snowDepth: data.data[30]["Snow Depth (in)"],
-          snowChange: data.data[30]["Change In Snow Depth (in)"],
+          date: data.data.data[30].Date,
+          snowDepth: data.data.data[30]["Snow Depth (in)"],
+          snowChange: data.data.data[30]["Change In Snow Depth (in)"],
           temperature:
             data.data.data[30]["Observed Air Temperature (degrees farenheit)"],
-          elevation: data.station_information.elevation,
-          mountain: data.station_information.name,
-          latitude: data.station_information.location.lat,
-          longitude: data.station_information.location.lng,
+          elevation: data.data.station_information.elevation,
+          mountain: data.data.station_information.name,
+          latitude: data.data.station_information.location.lat,
+          longitude: data.data.station_information.location.lng,
         });
       });
   };
@@ -210,19 +210,26 @@ class User extends React.Component {
         return (
           <Row>
             <Col>
-              <p>{listing.resort.name}</p>
+              {" "}
+              <Button
+                variant="primary"
+                value={`${listing.id}`}
+                onClick={() => this.fetchMountainData(listing.resort)}
+              >
+                {listing.resort.name}
+              </Button>{" "}
+              <br></br>
             </Col>
             <Col>
-              <p>{Math.floor(listing.rating)}</p>
-            </Col>
-            <Col>
+              {" "}
               <Button
                 value={`${listing.id}`}
                 onClick={(e) => this.deleteWishListItem(e)}
               >
                 Remove
-              </Button>
-            </Col>
+              </Button>{" "}
+              <br></br>
+            </Col>{" "}
           </Row>
         );
       });
@@ -319,7 +326,7 @@ class User extends React.Component {
           </Row>
           <Row>
             <Col>
-              <Card bg="dark" border="secondary" text="light">
+              <Card border="dark" bg="light" text="dark">
                 <Card.Title>Choose State</Card.Title>
                 <div>
                   <DropdownButton
@@ -376,15 +383,16 @@ class User extends React.Component {
                 text="dark"
                 style={{ width: "30rem" }}
               >
+                {" "}
                 <Card.Body>
-                  <Card.Title>Wish List</Card.Title>
-                  <Card.Text>{this.renderWishList()}</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
+                  {" "}
+                  <Card.Title>Wish List</Card.Title>{" "}
+                  <Card.Text>{this.renderWishList()}</Card.Text>{" "}
+                </Card.Body>{" "}
+              </Card>{" "}
+            </Col>{" "}
           </Row>
-          <br></br> <br></br> <br></br>
-          <Row></Row>
+          <br></br> <br></br> <br></br>{" "}
         </Container>
       </div>
     );

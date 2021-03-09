@@ -36,7 +36,14 @@ const PowNav = ({ user, handleLogout }) => {
           </>
         )}{" "}
       </Nav>
-      <Navbar.Brand>The pow is calling, and I must go</Navbar.Brand>
+      <Navbar.Brand
+        style={{
+          fontStyle: "italic",
+          fontWeight: "bold",
+        }}
+      >
+        The pow is calling, and I must go
+      </Navbar.Brand>
     </Navbar>
   );
 };

@@ -79,15 +79,11 @@
 
 .o-d {
   outline: 1px solid #333333;
-  /* width: 1000px;
-  height: 30px; */
 }
 
 .o-d-top {
   outline: 1px solid #333333;
   background-color: #242424;
-  /* width: 1000px;
-  height: 30px; */
 }
 
 .favorite-p {
@@ -96,12 +92,10 @@
 
 .favorite-p-two {
   outline: 1px solid #333333;
-  /* width: 650px; */
 }
 
 .favorite-row {
   outline: 1px solid #333333;
-  /* width: 700px; */
 }
 
 .order-img {
@@ -109,13 +103,6 @@
   margin-left: 6px;
   height: 100px;
   width: 150px;
-  /* height: 100%; */
-
-  /* display: flex;
-
-  align-items: center; */
-  /* 
-  justify-content: center; */
 }
 
 .mountain {
@@ -131,4 +118,16 @@
 
 .map-p {
   font-weight: bold;
+}
+
+.wishlist {
+  margin-top: 10px;
+}
+
+.state-pick {
+  margin-bottom: 10px;
+}
+
+.cards {
+  box-shadow: 3px 0px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
 }

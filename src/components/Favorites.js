@@ -109,7 +109,8 @@ class Favorites extends React.Component {
           this.setState({
             favorites: newNote,
           });
-        });
+        })
+        .then(e.target.reset());
     }
   };
 

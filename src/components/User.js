@@ -60,8 +60,6 @@ class User extends React.Component {
   };
 
   fetchMountainData = (resort) => {
-    // let mountain = resort.name.split(" ")[0].toLowerCase();
-    // let mountain = resort.name.split(' ').join('-')
     let API_Call = `http://localhost:3000/pow`;
     let powChartXValuesFunction = [];
     let powChartYValuesFunction = [];
@@ -208,29 +206,30 @@ class User extends React.Component {
     if (this.state.wishlist.length > 0) {
       return this.state.wishlist.map((listing) => {
         return (
-          <Row>
-            <Col>
-              {" "}
-              <Button
-                variant="primary"
-                value={`${listing.id}`}
-                onClick={() => this.fetchMountainData(listing.resort)}
-              >
-                {listing.resort.name}
-              </Button>{" "}
-              <br></br>
-            </Col>
-            <Col>
-              {" "}
-              <Button
-                value={`${listing.id}`}
-                onClick={(e) => this.deleteWishListItem(e)}
-              >
-                Remove
-              </Button>{" "}
-              <br></br>
-            </Col>{" "}
-          </Row>
+          <div className="wishlist">
+            <Row>
+              <Col>
+                {" "}
+                <Button
+                  variant="primary"
+                  value={`${listing.id}`}
+                  onClick={() => this.fetchMountainData(listing.resort)}
+                >
+                  {listing.resort.name}
+                </Button>{" "}
+              </Col>
+              <Col>
+                {" "}
+                <Button
+                  value={`${listing.id}`}
+                  onClick={(e) => this.deleteWishListItem(e)}
+                >
+                  Remove
+                </Button>{" "}
+                <br></br>
+              </Col>{" "}
+            </Row>
+          </div>
         );
       });
     }
@@ -263,6 +262,10 @@ class User extends React.Component {
     this.setState({
       us_state: s,
     });
+  };
+
+  sortedResorts = () => {
+    return this.state.resorts.sort((a, b) => (a.name < b.name ? -1 : 1));
   };
 
   render() {
@@ -309,8 +312,8 @@ class User extends React.Component {
             </Col>
             <Col>
               <br></br> <br></br> <br></br> <br></br>
-              <Card border="dark" bg="light" text="dark">
-                <Card.Title>Today's Statistics:</Card.Title>
+              <Card className="cards" border="dark" bg="light" text="dark">
+                <Card.Title className="mt-2">Today's Statistics:</Card.Title>
                 <Card.Text>
                   Snow Depth: {this.state.snowDepth} inches{" "}
                 </Card.Text>
@@ -320,18 +323,21 @@ class User extends React.Component {
                 <Card.Text>Temperature: {this.state.temperature}F</Card.Text>
                 <Card.Text>Elevation: {this.state.elevation} feet</Card.Text>
                 <Card.Text>Latitude: {this.state.latitude}</Card.Text>
-                <Card.Text>Longitude: {this.state.longitude}</Card.Text>
+                <Card.Text className="mb-2">
+                  Longitude: {this.state.longitude}
+                </Card.Text>
               </Card>
             </Col>
           </Row>
           <Row>
             <Col>
-              <Card border="dark" bg="light" text="dark">
-                <Card.Title>Choose State</Card.Title>
+              <Card className="cards" border="dark" bg="light" text="dark">
+                <Card.Title className="mt-2">Choose State</Card.Title>
                 <div>
                   <DropdownButton
                     id="dropdown-basic-button"
                     title="Pick A State"
+                    className="state-pick"
                   >
                     {" "}
                     {this.getStates().map((s) => {
@@ -347,7 +353,7 @@ class User extends React.Component {
                     })}
                   </DropdownButton>
                 </div>
-                {this.state.resorts.map((resort) => {
+                {this.sortedResorts().map((resort) => {
                   if (resort.us_state === this.state.us_state)
                     return (
                       <div>
@@ -382,17 +388,14 @@ class User extends React.Component {
                 bg="light"
                 text="dark"
                 style={{ width: "30rem" }}
+                className="cards"
               >
-                {" "}
-                <Card.Body>
-                  {" "}
-                  <Card.Title>Wish List</Card.Title>{" "}
-                  <Card.Text>{this.renderWishList()}</Card.Text>{" "}
-                </Card.Body>{" "}
-              </Card>{" "}
-            </Col>{" "}
+                <Card.Title className="mt-2">Wish List</Card.Title>
+
+                <Card.Text className="mb-2">{this.renderWishList()}</Card.Text>
+              </Card>
+            </Col>
           </Row>
-          <br></br> <br></br> <br></br>{" "}
         </Container>
       </div>
     );

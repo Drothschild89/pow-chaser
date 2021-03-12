@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+<h1>Powchaser</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h3>Solo project creating a personal ski application using a scatter plot to display the last 30 days of snow levels. Includes a favorites list where you can leave ratings and notes for specific mountains, and an explore page using google maps where you can explore new mountains. </h3>
 
-## Available Scripts
+<h2>Description</h2>
 
-In the project directory, you can run:
+<h3>On the loading screen is where a user can log in to their account or create a new account in the top left corner of the screen. After logging in you will see a default mountain displayed on the scatterplot graph with the Y-axis being the snow level for the past 30 days and the X-axis being the dates. Below the scatterplot graph you will see a button to select a state. After clicking the button you can select your state and choose a mountain to display on the graph. To the right of the scatterplot graph you will see today's statistics for the selected mountain. To the right of the state selection you will see a wish list which you can add to and keep specific mountains easily accessible. </h3>
 
-### `yarn start`
+<h3> In the choose a state dropdown menu you can also add a mountain to your favorites list. You can then click on the favorites link at the top of the screen. On this page you will see your favorites where you can leave a rating and a note for a specific mountain.  
+</h3>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h3> To explore new mountains click the explore button at the top of the page. From here you will be brought to the maps page where you can click on specific mountains to see their locations and elevation levels. To zoom out hold the command key and use the scroll wheel.
+</h3>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<h2>Setup and Installation</h2>
+<h3>Fork and clone this repository along with the d-trade backend repository. Enter in to the command line: cd pow-chaser. Then type: bundle install and hit return. Next enter in to the command line: rails db:migrate and then: rails db:seed. Enter in to the command line: rails s and then move to the front end. To do this, enter cd: d-trade-front-end in to the command line. Next enter: npm install followed by npm start which should load Powchaser in to your browser. </h3>
 
-### `yarn test`
+<h2>Screenshots</h2>
+<img src="./src/img/Screenshot1.jpg" height='500' width='500'>
+<img src="./src/img/Screenshot2.jpg" height='500' width='500'>
+<img src="./src/img/Screenshot3.jpg" height='500' width='500'>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h3>Created with Ruby: 2.6.1, Rails: 6.11, Javascript: ES6, React: 17.0.1</h3>
 
-### `yarn build`
+<h3>Created By:</h3>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<h3>Dustin Rothschild: Drothschild89@gmail.com</h3>
+<img src="./src/img/Dustin.jpg" height='500' width='250'>

@@ -30,5 +30,5 @@
 <h3>Created By:</h3>
 
 <h3>Dustin Rothschild: Drothschild89@gmail.com</h3>
-![Dustin](https://user-images.githubusercontent.com/67489174/111221164-5d7d9800-8597-11eb-99fb-49e3a94d3f96.jpg)
+
 

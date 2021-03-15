@@ -1,13 +1,10 @@
 import React from "react";
 import Plot from "react-plotly.js";
-import { Container, Row, Col, Button, Form, Alert } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { NavLink } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import Favorites from "./Favorites.js";
 import Card from "react-bootstrap/Card";
-import CardColumns from "react-bootstrap/CardColumns";
 import Logo from "../img/powchaser.png";
 import Resorts from "./Resort.js";
 import DropdownButton from "react-bootstrap/DropdownButton";

@@ -1,10 +1,7 @@
 import React from "react";
-import { Container, Row, Col, Button, Form, Alert } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { NavLink } from "react-router-dom";
 import { Table } from "react-bootstrap";
-// import Form from "react-bootstrap/Form";
 
 class Favorites extends React.Component {
   state = {

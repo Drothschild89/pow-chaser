@@ -1,4 +1,4 @@
-![Screenshot1](https://user-images.githubusercontent.com/67489174/111221031-3757f800-8597-11eb-90c4-1eb368b506c3.jpg)
+
 <h1>Powchaser</h1>
 
 <h3>Solo project creating a personal ski application using a scatter plot to display the last 30 days of snow levels. Includes a favorites list where you can leave ratings and notes for specific mountains, and an explore page using google maps where you can explore new mountains. </h3>
@@ -17,9 +17,10 @@
 <h3>Fork and clone this repository along with the d-trade backend repository. Enter in to the command line: cd pow-chaser. Then type: bundle install and hit return. Next enter in to the command line: rails db:migrate and then: rails db:seed. Enter in to the command line: rails s and then move to the front end. To do this, enter cd: d-trade-front-end in to the command line. Next enter: npm install followed by npm start which should load Powchaser in to your browser. </h3>
 
 <h2>Screenshots</h2>
-<img src="./src/img/Screenshot1.jpg" height='500' width='750'>
-<img src="./src/img/Screenshot2.jpg" height='500' width='750'>
-<img src="./src/img/Screenshot3.jpg" height='500' width='750'>
+![Screenshot1](https://user-images.githubusercontent.com/67489174/111221117-4f2f7c00-8597-11eb-9071-7fb21119b45a.jpg)
+![Screenshot2](https://user-images.githubusercontent.com/67489174/111221144-55255d00-8597-11eb-82d1-dc3a38b3df00.jpg)
+![Screenshot3](https://user-images.githubusercontent.com/67489174/111221148-5787b700-8597-11eb-83c8-57bdd5814fb0.jpg)
+
 
 <h3>Link to backend:</h3>
 <h3>https://github.com/Drothschild89/powchaser_backend</h3>
@@ -29,4 +30,5 @@
 <h3>Created By:</h3>
 
 <h3>Dustin Rothschild: Drothschild89@gmail.com</h3>
-<img src="./src/img/Dustin.jpg" height='500' width='250'>
+![Dustin](https://user-images.githubusercontent.com/67489174/111221164-5d7d9800-8597-11eb-99fb-49e3a94d3f96.jpg)
+

@@ -1,3 +1,4 @@
+![Screenshot1](https://user-images.githubusercontent.com/67489174/111221031-3757f800-8597-11eb-90c4-1eb368b506c3.jpg)
 <h1>Powchaser</h1>
 
 <h3>Solo project creating a personal ski application using a scatter plot to display the last 30 days of snow levels. Includes a favorites list where you can leave ratings and notes for specific mountains, and an explore page using google maps where you can explore new mountains. </h3>

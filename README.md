@@ -15,6 +15,8 @@
 <h2>Setup and Installation</h2>
 <h3>Fork and clone this repository along with the d-trade backend repository. Enter in to the command line: cd pow-chaser. Then type: bundle install and hit return. Next enter in to the command line: rails db:migrate and then: rails db:seed. Enter in to the command line: rails s and then move to the front end. To do this, enter cd: d-trade-front-end in to the command line. Next enter: npm install followed by npm start which should load Powchaser in to your browser. </h3>
 
+<h2>Screenshots</h2>
+
 ![Screenshot1](https://user-images.githubusercontent.com/67489174/111221452-bd743e80-8597-11eb-8ed2-4b427bfc5c36.jpg)
 ![Screenshot2](https://user-images.githubusercontent.com/67489174/111221486-c8c76a00-8597-11eb-802b-9dbf2d4e0aa9.jpg)
 ![Screenshot3](https://user-images.githubusercontent.com/67489174/111221495-cc5af100-8597-11eb-8190-3d781b5221e7.jpg)
